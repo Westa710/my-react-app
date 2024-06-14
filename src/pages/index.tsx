@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 
   return (
     <main>
-      <div className={"width-500"}>
+      <div className={"w-[500px]"}>
         <input
           type="text"
           value={text}
@@ -47,11 +47,11 @@ const Home: NextPage = () => {
       <div>
         <ul>
           {todos.map((todo, index) => (
-            <li key={index} className={"m-3 m border-black border-2 w-1/5"}>
-              <p className={""}>{todo}</p>
+            <li key={index} className={"m-3 border-black border-2 w-[280px]"}>
+              <p className={"text-center h-[30px]"}>{todo}</p>
               <button
                 onClick={() => deleteTodo(index)}
-                className={" bg-gray-300"}
+                className={" bg-blue-500 w-full h-[30px] text-white"}
               >
                 完了
               </button>
