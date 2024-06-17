@@ -5,7 +5,7 @@ import Link from "next/link";
 const Home: NextPage = () => {
   return (
     <div>
-      <Link href="/todo.tsx">todo</Link>
+      <Link href="/todo">todo</Link>
     </div>
   );
 };

@@ -47,7 +47,10 @@ const Home: NextPage = () => {
       <div>
         <ul>
           {todos.map((todo, index) => (
-            <li key={index} className={"m-3 border-black border-2 w-[280px]"}>
+            <li
+              key={index}
+              className={"m-3 border-cyan-600 border-2 w-[280px]"}
+            >
               <p className={"text-center h-[30px]"}>{todo}</p>
               <button
                 onClick={() => deleteTodo(index)}
