@@ -5,7 +5,9 @@ import Link from "next/link";
 const Home: NextPage = () => {
   return (
     <div>
-      <Link href="/todo">todo</Link>
+      <Link href="/todo" legacyBehavior>
+        <a className="text-4xl">todo</a>
+      </Link>
     </div>
   );
 };
