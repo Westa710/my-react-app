@@ -9,18 +9,33 @@ const Home: NextPage = () => {
     setText(e.target.value);
   };
 
-  const addTodos = () => {
-    const newTodos = [...todos];
+  const addTodo = () => {
     if (text === "") return;
-    newTodos.push(text);
-    setTodos(newTodos);
+    setTodos([...todos, text]);
     setText("");
-    console.log(text);
   };
 
   const deleteTodo = (index: number) => {
+    setTodos(todos.filter((_, i) => i !== index));
+  };
+
+  const moveUp = (index: number) => {
+    if (index === 0) return; // Can't move up the first item
     const newTodos = [...todos];
-    newTodos.splice(index, 1);
+    [newTodos[index - 1], newTodos[index]] = [
+      newTodos[index],
+      newTodos[index - 1],
+    ];
+    setTodos(newTodos);
+  };
+
+  const moveDown = (index: number) => {
+    if (index === todos.length - 1) return; // Can't move down the last item
+    const newTodos = [...todos];
+    [newTodos[index + 1], newTodos[index]] = [
+      newTodos[index],
+      newTodos[index + 1],
+    ];
     setTodos(newTodos);
   };
 
@@ -34,12 +49,11 @@ const Home: NextPage = () => {
           className={`
             bg-blue-100 ml-3 mt-3  
             p-3 rounded-full font-bold transition duration-300
-            
         `}
         />
         <button
-          onClick={addTodos}
-          className={"p-3 ml-3  bg-blue-500 text-white rounded-full"}
+          onClick={addTodo}
+          className={"p-3 ml-3 bg-blue-500 text-white rounded-full"}
         >
           追加
         </button>
@@ -52,12 +66,26 @@ const Home: NextPage = () => {
               className={"m-3 border-cyan-600 border-2 w-[280px]"}
             >
               <p className={"text-center h-[30px]"}>{todo}</p>
-              <button
-                onClick={() => deleteTodo(index)}
-                className={" bg-blue-500 w-full h-[30px] text-white"}
-              >
-                完了
-              </button>
+              <div className="flex">
+                <button
+                  onClick={() => moveUp(index)}
+                  className={"flex-1 bg-yellow-500 h-[30px] text-white"}
+                >
+                  ↑
+                </button>
+                <button
+                  onClick={() => moveDown(index)}
+                  className={"flex-1 bg-green-500 h-[30px] text-white"}
+                >
+                  ↓
+                </button>
+                <button
+                  onClick={() => deleteTodo(index)}
+                  className={"flex-1 bg-blue-500 h-[30px] text-white"}
+                >
+                  完了
+                </button>
+              </div>
             </li>
           ))}
         </ul>
