@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { useState } from "react";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   const [text, setText] = useState<string>("");
@@ -46,6 +47,11 @@ const Home: NextPage = () => {
           type="text"
           value={text}
           onChange={changeText}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addTodo();
+            }
+          }}
           className={`
             bg-blue-100 ml-3 mt-3  
             p-3 rounded-full font-bold transition duration-300
@@ -89,6 +95,9 @@ const Home: NextPage = () => {
             </li>
           ))}
         </ul>
+        <Link href="/" legacyBehavior>
+          <a className="text-4xl">home</a>
+        </Link>
       </div>
     </main>
   );
