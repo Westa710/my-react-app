@@ -40,29 +40,64 @@ const Home: NextPage = () => {
     setTodos(newTodos);
   };
 
+  // function to delete all items
+  const deleteAll = () => {
+    setTodos([]);
+  };
+
+  // function to concat some items for testing
+  const concatItems = () => {
+    setTodos([...todos, "test1", "test2", "test3"]);
+  };
+
   return (
     <main>
-      <div className={"w-[500px]"}>
-        <input
-          type="text"
-          value={text}
-          onChange={changeText}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              addTodo();
-            }
-          }}
-          className={`
+      <div className={"flex"}>
+        <div className={"w-[300px] flex"}>
+          <input
+            type="text"
+            value={text}
+            onChange={changeText}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                addTodo();
+              }
+            }}
+            className={`
             bg-blue-100 ml-3 mt-3  
             p-3 rounded-full font-bold transition duration-300
         `}
-        />
-        <button
-          onClick={addTodo}
-          className={"p-3 ml-3 bg-blue-500 text-white rounded-full"}
-        >
-          追加
-        </button>
+          />
+          <div className={""}>
+            <button
+              onClick={addTodo}
+              className={
+                "w-[80px] p-3 ml-3 bg-blue-500 text-white rounded-full"
+              }
+            >
+              追加
+            </button>
+            <button
+              onClick={deleteAll}
+              className={"w-[80px] p-3 ml-3 bg-red-500 text-white rounded-full"}
+            >
+              全削除
+            </button>
+            <button
+              onClick={concatItems}
+              className={
+                "w-[80px] p-3 ml-3 bg-green-500 text-white rounded-full"
+              }
+            >
+              test
+            </button>
+          </div>
+        </div>
+        <div className={"pl-5 pt-3 "}>
+          <Link href="/" legacyBehavior>
+            <a className="text-4xl">home</a>
+          </Link>
+        </div>
       </div>
       <div>
         <ul>
@@ -95,9 +130,6 @@ const Home: NextPage = () => {
             </li>
           ))}
         </ul>
-        <Link href="/" legacyBehavior>
-          <a className="text-4xl">home</a>
-        </Link>
       </div>
     </main>
   );
